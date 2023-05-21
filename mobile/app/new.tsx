@@ -44,7 +44,7 @@ export default function NewMemory() {
   }
 
   async function handleCreateMemory() {
-    const token = SecureStore.getItemAsync('token')
+    const token = await SecureStore.getItemAsync('token')
 
     let coverUrl = ''
 

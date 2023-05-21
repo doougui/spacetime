@@ -16,14 +16,18 @@ export async function uploadRoutes(app: FastifyInstance) {
     })
 
     if (!upload) {
-      return reply.status(400).send()
+      return reply.status(400).send({
+        error: 'No media file uploaded.',
+      })
     }
 
     const mimeTypeRegex = /^(image|video)\/[a-zA-Z]+/
     const isValidFileFormat = mimeTypeRegex.test(upload.mimetype)
 
     if (!isValidFileFormat) {
-      return reply.status(400).send()
+      return reply.status(400).send({
+        error: 'Invalid file format.',
+      })
     }
 
     const fileId = randomUUID()
